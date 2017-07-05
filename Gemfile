@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.3.0"
+ruby "2.3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -27,13 +27,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'puma'
-
+# Used for styling Sass
 gem 'bootstrap-sass', '~> 3.3.6'
+
 gem 'font-awesome-rails'
+
 gem 'money-rails'
+
+# Used for simplifying file uploads from Ruby applications
 gem 'carrierwave'
+
 gem 'rmagick'
+
 gem 'stripe'
+
 gem 'faker'
 
 # Use Capistrano for deployment

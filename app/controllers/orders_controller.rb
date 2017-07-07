@@ -1,10 +1,8 @@
 class OrdersController < ApplicationController
-  
-  before_filter :authorize
 
   def show
     @order = Order.find(params[:id])
-  end
+  end 
 
   def create
     charge = perform_stripe_charge
@@ -13,6 +11,8 @@ class OrdersController < ApplicationController
     if order.valid?
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
+      @user = User.find(params[:id])
+      UserMailer.email(@user).deliver_later
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end

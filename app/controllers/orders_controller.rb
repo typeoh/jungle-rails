@@ -9,10 +9,11 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
+      @user = User.find(session[:user_id])
+      @order = Order.find(session[:user_id])
+      UserMailer.order_confirm(@order, @user).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
-      @user = User.find(params[:id])
-      UserMailer.email(@user).deliver_later
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end

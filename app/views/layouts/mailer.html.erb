@@ -1,5 +1,22 @@
-<html>
-  <body>
-    <%= yield %>
-  </body>
-</html>
+<section class="order-details">
+<table class="table">
+
+  <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Image</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <% @order.line_items.each do |product| %>
+    <tr>
+      <td><%= product.product.name %></td>
+      <td>
+        <img src=<%= product.product.image %>
+      </td>
+      <td><%= product.product.description %></td>
+    </tr>
+  <% end %>
+
+  </table> 
+</section>

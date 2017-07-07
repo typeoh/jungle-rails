@@ -22,6 +22,11 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+        </dl>
+      </div>
+      <div class="col-sm-8">
+        <dl class="dl-horizontal">
+          <% if @product.reviews %>
           <% @product.reviews.each do |review| %>
           <dt>User</dt>
           <dd><%= review.user.first_name %> <%= review.user.last_name %></dd>
@@ -29,6 +34,7 @@
           <dd><%= review.description %></dd>
           <dt>Rating</dt>
           <dd><%= '🔥' * review.rating %></dd>
+          <% end %>
           <% end %>
         </dl>
       </div>

@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:create]
+  end
+
   resources :categories, only: [:show]
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -23,7 +26,7 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]
     resources :categories, except: [:edit, :update, :show]
   end
-  
+
    if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

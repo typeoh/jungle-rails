@@ -24,19 +24,36 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
-      <div class="col-sm-8">
-        <dl class="dl-horizontal">
-          <% if @product.reviews %>
-          <% @product.reviews.each do |review| %>
-          <dt>User</dt>
-          <dd><%= review.user.first_name %> <%= review.user.last_name %></dd>
-          <dt>Review</dt>
-          <dd><%= review.description %></dd>
-          <dt>Rating</dt>
-          <dd><%= '🔥' * review.rating %></dd>
+       <div class="row">
+        <div class="col-sm-6 col-sm-offset-1">
+           <%= form_for [@product, @review] do |f| %>
+            <div class="form-group">
+              <h4>Write a Review Here</h4>
+              <%= f.text_area :description, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <h4>Your Rating</h4>
+              <%= f.select :rating, options_for_select(1..5), class: 'form-control' %>
+            </div>
+            <%= f.submit "Submit Review", class: 'btn btn-primary' %>
           <% end %>
-          <% end %>
-        </dl>
+        </div>
+      </div>
+      <div class="container">
+        <h2>Reviews for this Product</h2>
+          <div class="row">
+            <% if @product.reviews %>
+            <% @product.reviews.order(created_at: :desc).each do |review| %>
+            <dt>Name</dt>
+            <dd><%= review.user.first_name %> <%= review.user.last_name %></dd>
+            <dt>Review</dt>
+            <dd><%= review.description %></dd>
+            <dt>Rating</dt>
+            <dd><%= '🔥' * review.rating %></dd>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
 

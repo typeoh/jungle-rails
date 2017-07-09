@@ -1,7 +1,9 @@
 <section class="cart-show">
+ 
 
   <header class="page-header">
-    <h1>My Cart</h1>
+    <% if !cart.empty?%>
+      <h1>My Cart</h1>
   </header>
 
   <div class="panel panel-default items">
@@ -32,7 +34,6 @@
       </tfoot>
     </table>
   </div>
-
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
@@ -46,6 +47,11 @@
           data-email="kvirani@gmail.com"
           data-currency="cad">
         </script>
+      <% end %>
+      <% else %>
+      <h4>Hey pal, your cart is empty!<h4>
+      <h4>To continue shopping follow the link: </h4>
+      <h4><%= link_to 'Shopping', [:products], class: 'btn btn-info' %></h4>
       <% end %>
     </div>
   </div>

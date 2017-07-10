@@ -4,10 +4,13 @@ A mini e-commerce application built with Rails 4.2. Users can purchase and revie
 Upon purchase they will receive an email confirmation with their order details. 
 Admin can add and update categories and products. 
 
-
-![Admin Categories](https://github.com/typeoh/jungle-rails/blob/master/public/screenshots/admin_cat.png)
-![Index](https://github.com/typeoh/jungle-rails/blob/master/public/screenshots/jungle_index.png)
+## Homepage
 ![Jungle Index](https://github.com/typeoh/jungle-rails/blob/master/public/screenshots/jungle_index.png)
+
+## Admin Categories
+![Admin Categories](https://github.com/typeoh/jungle-rails/blob/master/public/screenshots/admin_cat.png)
+
+## View Cart
 ![View Cart](https://github.com/typeoh/jungle-rails/blob/master/public/screenshots/view_cart.png)
 
 

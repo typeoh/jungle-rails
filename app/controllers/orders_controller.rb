@@ -4,18 +4,23 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end 
 
-  def create
+  def create  
     charge = perform_stripe_charge
     order  = create_order(charge)
 
-    if order.valid?
+    if order.valid? && current_user
       @user = User.find(session[:user_id])
-      @order = Order.find(session[:order_id])
-      UserMailer.order_confirm(@order, @user).deliver_now
+      UserMailer.order_confirm(order, @user).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
+      if !current_user
+        UserMailer.order_confirm(order, order).deliver_now
+        empty_cart!
+        redirect_to order, notice: 'Your Order has been placed.'
+    else
       redirect_to cart_path, error: order.errors.full_messages.first
+    end
     end
 
   rescue Stripe::CardError => e

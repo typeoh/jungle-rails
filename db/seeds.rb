@@ -35,6 +35,12 @@ User.destroy_all
 puts "Re-creating Users ..."
 
 User.create!({
+  first_name: 'Vistor',
+  last_name: 'V',
+  email: 'vistor@jungle.com',
+  password_digest: 'visitor'
+})
+User.create!({
   first_name: 'Dr',
   last_name: 'Haliburton',
   email: 'dr@haliburton',

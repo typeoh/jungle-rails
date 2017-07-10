@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 
     if order.valid?
       @user = User.find(session[:user_id])
-      @order = Order.find(session[:user_id])
+      @order = Order.find(session[:order_id])
       UserMailer.order_confirm(@order, @user).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'

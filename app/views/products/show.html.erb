@@ -42,7 +42,7 @@
       <div class="container">
         <h2>Reviews for this Product</h2>
           <div class="row">
-            <% if @product.reviews %>
+            <% if @product.reviews.exists? %>
             <% @product.reviews.order(created_at: :desc).each do |review| %>
             <dt>Name</dt>
             <dd><%= review.user.first_name %> <%= review.user.last_name %></dd>
